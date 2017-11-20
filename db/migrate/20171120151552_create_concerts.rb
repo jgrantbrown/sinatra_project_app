@@ -7,3 +7,4 @@ class CreateConcerts < ActiveRecord::Migration[5.1]
      t.date :date
   end
 end
+end
