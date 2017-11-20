@@ -19,6 +19,7 @@ Concert
     has-many concert_user_comments
 
       band_id
+      name
       date
       venue_id
 
