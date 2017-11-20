@@ -1,0 +1,13 @@
+<h1> My Concerts attended </h1>
+
+<%= @user.username %>
+
+<% @user.concerts.each do |concert| %>
+  <p>The band</p>
+    <%= concert.band.name %>
+
+<p>Venue</p>
+  <%= concert.venue.name %>
+  <p>Date:</p>
+  <%= concert.date %>
+<% end %>

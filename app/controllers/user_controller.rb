@@ -1,4 +1,15 @@
 class UserController <ApplicationController
 
+get '/users' do
   
+  @users = User.all
+  erb :'/users/user_index'
+end
+
+get '/users/:id' do
+  @user = User.find(params[:id])
+
+  erb :'/users/user_show'
+end
+
 end

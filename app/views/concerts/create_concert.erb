@@ -2,9 +2,17 @@
 
 <form method="POST" action="/concert">
 
-  <label>Band Name</label><br>
+  <label> Bands: </label>
+      <% Band.all.each do |band| %>
+        <p>
+          <label><%= band.name %></label>
+          <input type="checkbox" name="bands[]" value="<%= band.id %>">
+        </p>
+      <% end %>
+
+    <p>Add or create band</p>
     <input type='text' name=band[name]>
-    <p>Add or create band</p></br>
+  </br>
 
   <label>Concert Name</label>
     <input type"text" name=concert[name] >
@@ -12,8 +20,15 @@
     <input type"text" name=concert[date] ><br><br>
 
   <label>Venue Name</label>
-    <input type='text' name=venue[name]>
+  <% Venue.all.each do |venue| %>
+    <p>
+      <label><%= venue.name %></label>
+      <input type="checkbox" name="venues[]" value="<%= venue.id %>">
+    </p>
+  <% end %>
+
     <p>Add or create band</p>
+    <input type='text' name=venue[name]>
 
   <input type="submit" value="Add a Concert">
 </form>
