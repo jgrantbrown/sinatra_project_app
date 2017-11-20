@@ -3,24 +3,31 @@ Build a sinatra app to track history of concerts attended.
 
 Models
 Users
+  has_many concerts through concert_user_comments
+  has-many concert_user_comments
     username
     email
     password_digest
 
+
+
+
 Concert
     belongs_to a venue
     belongs_to a band
+    has_many users through concert_user_comments
+    has-many concert_user_comments
 
       band_id
       date
       venue_id
 
-Concert_usernotes
+Concert_user_comments
   belongs_to user
   belongs_to concert
     user_id
     concert_id
-    notes
+    comments
 
 Band
     has_many concerts
