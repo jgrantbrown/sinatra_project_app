@@ -1,0 +1,3 @@
+class BandController < ApplicationController
+
+end
