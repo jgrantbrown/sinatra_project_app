@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20171120152115) do
     t.string "name"
   end
 
-  create_table "concert_user_comments", force: :cascade do |t|
+  create_table "concert_users", force: :cascade do |t|
     t.string "comments"
     t.integer "user_id"
     t.integer "concert_id"

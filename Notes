@@ -23,7 +23,7 @@ Concert
       date
       venue_id
 
-Concert_user_comments
+Concert_user
   belongs_to user
   belongs_to concert
     user_id
@@ -32,6 +32,8 @@ Concert_user_comments
 
 Band
     has_many concerts
+    add this:
+    has_many venues through concerts
   name
 
 
