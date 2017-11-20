@@ -6,4 +6,10 @@ end
 
 use Rack::MethodOverride
 
+use BandController
+use ConcertController
+use UserController
+use VenueController
+
+
 run ApplicationController
