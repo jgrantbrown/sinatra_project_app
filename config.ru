@@ -10,6 +10,6 @@ use BandController
 use ConcertController
 use UserController
 use VenueController
-
+use SigninController
 
 run ApplicationController
