@@ -10,13 +10,16 @@ class ApplicationController < Sinatra::Base
     set :session_secret, "secret"
   end
 
-  def current_user
-      User.find(session[:user_id]) if session[:user_id]
-   end
+  # Helpers
+    def current_user
+      @current_user =  User.find(session[:user_id]) if session[:user_id]
+    end
 
-   def is_logged_in?
-     !!current_user
-   end
+    def is_logged_in?
+      !!current_user
+    end
+
+
 
 
   get '/' do
