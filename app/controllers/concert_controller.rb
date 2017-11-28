@@ -17,4 +17,11 @@ post '/concert' do
 
 end
 
+delete '/concert/:id' do
+
+  @concert = Concert.find(params["id"])
+  @concert.destroy
+  redirect 'users/user_show'
+end
+
 end

@@ -24,10 +24,15 @@
           <td><%= concert.band.name %></td>
           <td><%= concert.venue.name %></td>
           <td><%= concert.date %></td>
-          <% if @user.id == current_user.id %>
-          <td><button>Update</button> </td>
-          <td><button>Delete</button> </td>
-            <% end %>
+            <% if @user.id == current_user.id %>
+              <td><button>Update</button> </td>
+              <td><form action="/concert/<%= concert.id %>" method="post">
+                  <div style="margin:0;padding:0">
+                    <input name="_method" type="hidden" value="delete" />
+                    <button type='submit'>Delete</button>
+                  </div>
+              </form></td>
+              <% end %>
         </tr>
       <% end %>
     </table>

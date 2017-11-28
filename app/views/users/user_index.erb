@@ -1,9 +1,9 @@
 <h1>All of the current users</h1>
 
-
-<% @users.each do |user| %>
-  <ol>
-    <li><%= user.username %>
+<ol>
+  <% @users.each do |user| %>
+      <li><%= user.username %>
+        Total Concerts Attended: <%= user.concerts.count %>
       </li>
-  </ol>
-<% end %>
+  <% end %>
+</ol>
