@@ -7,29 +7,32 @@
 <h1>  Concerts attended by: <%= @user.username %></h1>
 
 <h2>All Concerts: (<%= @user.concerts.count %>)</h2>
-  <% @user.concerts.each do |concert| %>
+
     <table>
       <colgroup>
-    <col span="3" style="background-color:grey">
+      <col span="3" style="background-color:grey">
+
     <tr>
       <th>The Band</th>
       <th>Venue</th>
       <th>Date</th>
     </tr>
+
+    <% @user.concerts.each do |concert| %>
         <tr>
           <td><%= concert.band.name %></td>
           <td><%= concert.venue.name %></td>
           <td><%= concert.date %></td>
         </tr>
+      <% end %>
     </table>
-  <% end %>
+
 
   <h2> Bands I have seen </h2>
   <p>Band name(number of concerts seen)</p>
-    <% @user.concerts.each do |concert| %>
     <ol>
-      <li><%= concert.band.name %> (number of times seen)
-      </li>
-    </ol>
-
-  <% end %>
+      <% @bands.each do |band| %>
+          <li><a href=/bands/<%= band[0].id %> > <%= band[0].name %> </a>(<%= band[1] %>)
+            </li>
+      <% end %>
+      </ol>

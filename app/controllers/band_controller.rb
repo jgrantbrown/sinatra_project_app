@@ -6,7 +6,6 @@ class BandController < ApplicationController
   end
 
   get '/bands/:id' do
-    
     @band= Band.find(params[:id])
     erb :'/band/band_show'
   end
