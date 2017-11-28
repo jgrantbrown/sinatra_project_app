@@ -6,12 +6,12 @@
       <% Band.all.each do |band| %>
         <p>
           <label><%= band.name %></label>
-          <input type="checkbox" name="bands[]" value="<%= band.id %>">
+          <input type="checkbox" name="band[]" value="<%= band.id %>">
         </p>
       <% end %>
 
     <p>Add or create band</p>
-    <input type='text' name=band[name]>
+    <input type='text' name=create_band[name]>
   </br>
 
   <label>Concert Date</label>
@@ -21,12 +21,12 @@
   <% Venue.all.each do |venue| %>
     <p>
       <label><%= venue.name %></label>
-      <input type="checkbox" name="venues[]" value="<%= venue.id %>">
+      <input type="checkbox" name="venue[]" value="<%= venue.id %>">
     </p>
   <% end %>
 
     <p>Add or Venue</p>
-    <input type='text' name=venue[name]>
+    <input type='text' name=create_venue[name]>
 
   <input type="submit" value="Add a Concert">
 </form>

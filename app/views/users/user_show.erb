@@ -1,6 +1,7 @@
 
   <% if @user.id == current_user.id %>
     <p>Welcome back <%= @user.username %></p>
+    <a href='/concert/new'> Add a Concert </a>
   <% end %>
 
 
@@ -23,6 +24,10 @@
           <td><%= concert.band.name %></td>
           <td><%= concert.venue.name %></td>
           <td><%= concert.date %></td>
+          <% if @user.id == current_user.id %>
+          <td><button>Update</button> </td>
+          <td><button>Delete</button> </td>
+            <% end %>
         </tr>
       <% end %>
     </table>
@@ -32,6 +37,7 @@
   <p>Band name(number of concerts seen)</p>
     <ol>
       <% @bands.each do |band| %>
+        <!-- Confir best practice for band[0] etc. -->
           <li><a href=/bands/<%= band[0].id %> > <%= band[0].name %> </a>(<%= band[1] %>)
             </li>
       <% end %>

@@ -1,1 +1,7 @@
 <h1> A list of all Concerts</h1>
+<ol>
+  <% @concerts.each do |concert| %>
+  <li><%= concert.band.name %> played on:<%= concert.date %>
+  </li>
+  <% end%>
+</ol>
