@@ -2,6 +2,7 @@
 <ol>
   <% @concerts.each do |concert| %>
   <li><%= concert.band.name %> played on:<%= concert.date %>
+    Number of members attended: <%= concert.users.count %>
   </li>
   <% end%>
 </ol>
