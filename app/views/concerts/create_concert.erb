@@ -1,32 +1,42 @@
 <h1> Add a concert </h1>
 
-<form method="POST" action="/concert">
+<div style="width: 500px;">
+  <form method="POST" action="/concerts">
 
-  <label> Bands: </label>
-      <% Band.all.each do |band| %>
-        <p>
-          <label><%= band.name %></label>
-          <input type="checkbox" name="band[]" value="<%= band.id %>">
-        </p>
-      <% end %>
+  <div style="float: left; width: 200px;">
+    <label> Bands: </label>
+        <% Band.all.each do |band| %>
+          <p>
+            <label><%= band.name %></label>
+            <input type="radio" name="concert[band_id][]" value="<%= band.id %>">
+          </p>
+        <% end %>
 
-    <p>Add or create band</p>
-    <input type='text' name=create_band[name]>
-  </br>
+      <p>Add or create band</p>
+      <input type='text' name="concert[band_name]">
+    </div>
 
-  <label>Concert Date</label>
-    <input type"text" name=concert[date] ><br><br>
+  <div style="float: left; width: 200px;">
+    <label>Venue Name:</label>
+    <% Venue.all.each do |venue| %>
+      <p>
+        <label><%= venue.name %></label>
+        <input type="radio" name="concert[venue_id][]" value="<%= venue.id %>">
+      </p>
+    <% end %>
 
-  <label>Venue Name</label>
-  <% Venue.all.each do |venue| %>
-    <p>
-      <label><%= venue.name %></label>
-      <input type="checkbox" name="venue[]" value="<%= venue.id %>">
-    </p>
-  <% end %>
+      <p>Add or Venue</p>
+      <input type='text' name="concert[venue_name]">
+    </div>
 
-    <p>Add or Venue</p>
-    <input type='text' name=create_venue[name]>
+  <div style="float: left; width: 100px;">
+    <label>Concert Date</label>
+    <input type='date' name="concert[date]">
+  </div>
+
+  <br style="clear: left;" />
+</div>
 
   <input type="submit" value="Add a Concert">
-</form>
+
+  </form>

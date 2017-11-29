@@ -5,23 +5,32 @@ get '/concerts' do
   erb :'/concerts/concert_index'
 end
 
-get '/concert/new' do
+get '/concerts/new' do
   erb :'/concerts/create_concert'
 end
 
-post '/concert' do
-  binding.pry
-#  @user = User.find(session["user_id"])
-  # @concert = Concert.new
-  # @concert.name =  params[:concert_name]
+post '/concerts' do
 
+ @user = User.find(session["user_id"])
+   @concert = Concert.new
+    @concert.name =  params[:concert_name]
+    @concert.band_name=(params['concert']['band_name'])
+    @concert.venue_name=(params['concert']['venue_name'])
+    @concert.date=(params['concert']['date'])
+    @user.concerts<<@concert
+
+
+    # assign concert to user?
+    redirect "/users/#{session["user_id"]}"
 end
 
-delete '/concert/:id' do
+delete '/concerts/:id' do
 
   @concert = Concert.find(params["id"])
   @concert.destroy
-  redirect 'users/user_show'
+  redirect "users/#{params[:id]}"
 end
+
+# Addd Strong Params?
 
 end

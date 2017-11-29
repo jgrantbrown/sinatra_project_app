@@ -1,7 +1,7 @@
 
   <% if @user.id == current_user.id %>
     <p>Welcome back <%= @user.username %></p>
-    <a href='/concert/new'> Add a Concert </a>
+    <a href='/concerts/new'> Add a Concert </a>
   <% end %>
 
 
@@ -26,7 +26,7 @@
           <td><%= concert.date %></td>
             <% if @user.id == current_user.id %>
               <td><button>Update</button> </td>
-              <td><form action="/concert/<%= concert.id %>" method="post">
+              <td><form action="/concerts/<%= concert.id %>" method="post">
                   <div style="margin:0;padding:0">
                     <input name="_method" type="hidden" value="delete" />
                     <button type='submit'>Delete</button>
@@ -41,9 +41,9 @@
   <h2> Bands I have seen </h2>
   <p>Band name(number of concerts seen)</p>
     <ol>
-      <% @bands.each do |band| %>
+      <% @bands.each do |band, count| %>
         <!-- Confir best practice for band[0] etc. -->
-          <li><a href=/bands/<%= band[0].id %> > <%= band[0].name %> </a>(<%= band[1] %>)
+          <li><a href=/bands/<%= band.id %> > <%= band.name %> </a>(<%= count %>)
             </li>
       <% end %>
       </ol>
