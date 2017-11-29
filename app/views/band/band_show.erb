@@ -1,2 +1,33 @@
 <h1> More details about the band </h1>
 <%= @band.name %>
+
+Concerts members have added:
+<table>
+  <colgroup>
+  <col span="3" style="background-color:grey">
+
+<% @band.concerts.each do |concert| %>
+  <tr>
+    <th><label>
+        Concert Date
+      </label></th>
+    <th><label>
+        Concert Venue
+      </label></th>
+  </tr>
+
+  <tr>
+  <td>  <%= concert.date %> </td>
+  <td><%= concert.venue.name %></td>
+  <td> <a href='/concerts/<%= concert.id %>'>Concert info</a>
+  </tr>
+<% end %>
+</table>
+
+<label>Who has seen them:</label>
+
+<% @band.concerts.each do |concert| %>
+  <%concert.users.uniq.each do |user|%>
+    <%= user.username%>
+  <% end %>
+<% end %>

@@ -4,26 +4,26 @@
   <form method="POST" action="/concerts">
 
   <div style="float: left; width: 200px;">
-    <label> Bands: </label>
-        <% Band.all.each do |band| %>
-          <p>
-            <label><%= band.name %></label>
-            <input type="radio" name="concert[band_id][]" value="<%= band.id %>">
-          </p>
+
+    <label for="band_id">Select a Band</label>
+      <select id='band_id' name='concert[band_id]' type='text'>
+        <% Band.all.each() do |band| %>
+          <option value="<%= band.id()%>"> <%= band.name() %> </option>
         <% end %>
+      </select>
 
       <p>Add or create band</p>
       <input type='text' name="concert[band_name]">
     </div>
 
   <div style="float: left; width: 200px;">
-    <label>Venue Name:</label>
-    <% Venue.all.each do |venue| %>
-      <p>
-        <label><%= venue.name %></label>
-        <input type="radio" name="concert[venue_id][]" value="<%= venue.id %>">
-      </p>
-    <% end %>
+
+    <label for="venue_id">Select a Venue</label>
+      <select id='venue_id' name='concert[venue_id]' type='text'>
+        <% Venue.all.each() do |venue| %>
+          <option value="<%= venue.id()%>"> <%= venue.name() %> </option>
+        <% end %>
+      </select>
 
       <p>Add or Venue</p>
       <input type='text' name="concert[venue_name]">

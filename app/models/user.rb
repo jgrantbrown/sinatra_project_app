@@ -3,7 +3,7 @@ require 'active_model'
 class User < ActiveRecord::Base
   include ActiveModel::Validations
 
-  validates_presence_of :username
+  validates_presence_of :username, uniqueness: true
   validates_presence_of :password
   validates_presence_of :email, uniqueness: true
 

@@ -1,7 +1,11 @@
 <h1> Bands our users have seen or added</h1>
 
-<% @bands.each do |band| %>
   <ol>
-  <li><%= band.name %></li>
-</oL>
-<% end %>
+  <% @bands.each do |band| %>
+    <li><%= band.name %>
+        <label>Concerts:
+          (<%=band.concerts.count%>)
+          </label>
+    </li>
+  <% end %>
+  </ol>

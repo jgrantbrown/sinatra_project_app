@@ -1,7 +1,7 @@
 class ConcertController <ApplicationController
 
   get '/concerts' do
-      @concerts=Concert.all
+      @concerts=Concert.all.sort_by &:date
 
     erb :'/concerts/concert_index'
   end
@@ -16,6 +16,7 @@ class ConcertController <ApplicationController
   end
 
   post '/concerts' do
+    binding.pry
   # need to write logic to either use radio checked or create and then process
    @user = User.find(session["user_id"])
      @concert = Concert.new

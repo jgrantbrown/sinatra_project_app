@@ -1,8 +1,12 @@
 <h1> A list of all Concerts</h1>
-<ol>
-  <% @concerts.each do |concert| %>
-  <li><%= concert.band.name %> played on:<%= concert.date %>
-    Number of members attended: <%= concert.users.count %>
-  </li>
-  <% end%>
-</ol>
+
+  <ol>
+    <% @concerts.each do |concert| %>
+      <li>Date:<%= concert.date %>
+          Band:<%= concert.band.name %>
+          Venue:<%= concert.venue.name %>
+          Number of members attended: <%= concert.users.count %>
+          <a href='/concerts/<%= concert.id %>'>More Info </a>
+        </li>
+    <% end%>
+  </ol>
