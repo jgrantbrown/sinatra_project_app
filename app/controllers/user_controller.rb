@@ -10,10 +10,12 @@ class UserController <ApplicationController
   get '/users/:id' do
     @user = User.find(params[:id])
     @bands=@user.concerts.joins(:band).group("band").count
-    
+
     erb :'/users/user_show'
   end
 
-
+  post '/users/addconcert' do
+    
+  end
 
 end

@@ -42,7 +42,7 @@
   <p>Band name(number of concerts seen)</p>
     <ol>
       <% @bands.each do |band, count| %>
-        <!-- Confir best practice for band[0] etc. -->
+        
           <li><a href=/bands/<%= band.id %> > <%= band.name %> </a>(<%= count %>)
             </li>
       <% end %>

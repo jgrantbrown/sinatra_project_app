@@ -6,7 +6,20 @@
           Band:<%= concert.band.name %>
           Venue:<%= concert.venue.name %>
           Number of members attended: <%= concert.users.count %>
+
+          <!-- Only add concerts that you have not already added -->
+          <!-- THis logic needs to be moved -->
+           <% if !User.find(session[:user_id]).concerts.detect {|x| x[:id] ==  concert.id  } %>
+            <form method='POST' action='/users/addconcert'>
+              <input type="hidden" value="<%=session[:user_id]%>" name="session[:user_id]" >
+              <input type="hidden" value="<%= concert.id %>" name="concert.id">
+              <input type="Submit" value="Add concert to my list" >
+            </form>
+            <% end %>
+
+
+
           <a href='/concerts/<%= concert.id %>'>More Info </a>
         </li>
-    <% end%>
+    <% end %>
   </ol>
