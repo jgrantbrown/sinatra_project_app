@@ -10,14 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171120152115) do
+ActiveRecord::Schema.define(version: 20171201002056) do
 
   create_table "bands", force: :cascade do |t|
     t.string "name"
   end
 
+  create_table "comments", force: :cascade do |t|
+    t.string "comment"
+  end
+
   create_table "concert_users", force: :cascade do |t|
-    t.string "comments"
+    t.string "comment_id"
     t.integer "user_id"
     t.integer "concert_id"
   end

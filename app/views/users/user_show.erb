@@ -11,12 +11,15 @@
 
     <table>
       <colgroup>
-      <col span="3" style="background-color:grey">
+      <col span="6" style="background-color:grey">
 
     <tr>
       <th>The Band</th>
       <th>Venue</th>
       <th>Date</th>
+      <th> Comments </th>
+      <th> Add Comments </th>
+      <th> I was not there</th>
     </tr>
 
     <% @user.concerts.each do |concert| %>
@@ -24,26 +27,49 @@
           <td><%= concert.band.name %></td>
           <td><%= concert.venue.name %></td>
           <td><%= concert.date %></td>
+
+          <td><%= concert.comments.count %></td>
             <% if @user.id == current_user.id %>
-              <td><button>Update</button> </td>
-              <td><form action="/concerts/<%= concert.id %>" method="post">
-                  <div style="margin:0;padding:0">
-                    <input name="_method" type="hidden" value="delete" />
-                    <button type='submit'>Delete</button>
-                  </div>
-              </form></td>
+
+            <!-- Add functionallity to add comment to concerts
+                  Add fucntionallity to remove from concert
+                  Add function for admin only to delete concert9if users.count =0 only-->
+              <td><form method='POST' action='/comments/new'>
+                  <input type='submit' value="Comments/Add comment">
+                </form></td>
+
+                <td><form method='POST' action='/concertuser/delete'>
+                    <input type='hidden' name='concert_id' value=<%= concert.id %>>
+                    <input type='submit' value="Remove me I wasn't there">
+                  </form></td>
+
               <% end %>
         </tr>
       <% end %>
     </table>
 
+  <div style="width: 100%;">
 
-  <h2> Bands I have seen </h2>
-  <p>Band name(number of concerts seen)</p>
-    <ol>
-      <% @bands.each do |band, count| %>
-        
-          <li><a href=/bands/<%= band.id %> > <%= band.name %> </a>(<%= count %>)
-            </li>
-      <% end %>
-      </ol>
+    <div style="float: left; width: 50%;">
+      <h2> Bands I have seen (<%= @bands.count %>)</h2>
+      <p>Band name(number of concerts seen)</p>
+        <ol>
+          <% @bands.each do |band, count| %>
+              <li><a href=/bands/<%= band.id %> > <%= band.name %> </a>(<%= count %>)
+                </li>
+          <% end %>
+          </ol>
+        </div>
+
+    <div style="float: left; width: 50%;">
+          <h2> Venues I have been too (<%= @venues.count %>)</h2>
+
+          <p>Venue name(number of concerts seen @)</p>
+            <ol>
+              <% @venues.each do |venue, count| %>
+                  <li><a href=/venues/<%= venue.id %> > <%= venue.name %> </a>(<%= count %>)
+                    </li>
+              <% end %>
+              </ol>
+            </div>
+  </div>

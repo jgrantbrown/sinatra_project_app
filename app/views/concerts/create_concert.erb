@@ -1,42 +1,48 @@
-<h1> Add a concert </h1>
+<h1> Check into a concert or Add one:</h1>
 
 <div style="width: 500px;">
   <form method="POST" action="/concerts">
 
   <div style="float: left; width: 200px;">
-
     <label for="band_id">Select a Band</label>
       <select id='band_id' name='concert[band_id]' type='text'>
         <% Band.all.each() do |band| %>
           <option value="<%= band.id()%>"> <%= band.name() %> </option>
         <% end %>
       </select>
-
-      <p>Add or create band</p>
-      <input type='text' name="concert[band_name]">
     </div>
 
-  <div style="float: left; width: 200px;">
-
+  <div style="float: left; width: 225px;">
     <label for="venue_id">Select a Venue</label>
       <select id='venue_id' name='concert[venue_id]' type='text'>
         <% Venue.all.each() do |venue| %>
           <option value="<%= venue.id()%>"> <%= venue.name() %> </option>
         <% end %>
-      </select>
+        </select>
+  </div>
 
-      <p>Add or Venue</p>
-      <input type='text' name="concert[venue_name]">
-    </div>
-
-  <div style="float: left; width: 100px;">
-    <label>Concert Date</label>
+  <div style="float: left; width: 75px;">
+    <label>Date:</label>
     <input type='date' name="concert[date]">
   </div>
 
-  <br style="clear: left;" />
+    <br style="clear: left;" />
+  <input type="submit" value="Add a Concert attended">
+  </form>
 </div>
 
-  <input type="submit" value="Add a Concert">
 
+
+<h2> If you do not see a Venue enter it to add to the list!</h2>
+  <form action='/venues/new' method='post'>
+    <p>Add or Venue</p>
+    <input type='text' name="concert[venue_name]">
+    <input type="submit" value="Add a Venue">
+  </form>
+
+<h2> If you do not see a Band enter it to add to the list!</h2>
+  <form action='/bands/new' method='post'>
+  <p>Add or create band</p>
+  <input type='text' name="concert[band_name]">
+  <input type="submit" value="Add a Band">
   </form>

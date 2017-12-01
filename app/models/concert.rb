@@ -7,9 +7,9 @@ class Concert < ActiveRecord::Base
   belongs_to :band
   has_many :concert_users
   has_many :users, through: :concert_users
-
+  has_many :comments, through: :concert_users
 # Add validations for venue band date
-  validates_presence_of :date
+  validates :date, presence: true
 
   attr_accessor :venue_name, :band_name
 
@@ -32,5 +32,13 @@ class Concert < ActiveRecord::Base
       self.venue=Venue.find_or_create_by(name: venue_name)
     end
   end
+
+  def self.concert_exists(params)
+    self.find_by(date: params['concert']['date'], band_id:params['concert']['band_id'],venue_id:params['concert']['venue_id']) != nil
+  end
+
+  def self.find_concert(params)
+      self.find_by(date: params['concert']['date'], band_id:params['concert']['band_id'],venue_id:params['concert']['venue_id'])
+    end
 
 end

@@ -7,19 +7,24 @@
           Venue:<%= concert.venue.name %>
           Number of members attended: <%= concert.users.count %>
 
-          <!-- Only add concerts that you have not already added -->
+          <!-- Only add concerts that you have not already added
+                current_user.concerts.detect {|x| x[:id] ==  concert.id  }-->
           <!-- THis logic needs to be moved -->
            <% if !User.find(session[:user_id]).concerts.detect {|x| x[:id] ==  concert.id  } %>
             <form method='POST' action='/users/addconcert'>
               <input type="hidden" value="<%=session[:user_id]%>" name="session[:user_id]" >
-              <input type="hidden" value="<%= concert.id %>" name="concert.id">
+              <input type="hidden" value="<%= concert.id %>" name="concert_id">
               <input type="Submit" value="Add concert to my list" >
             </form>
+            <a href='/concerts/<%= concert.id %>'>More Info </a>
+            <% else %>
+            <!-- Add function to remove me from atteneding concert -->
+            <a href='/concerts/<%= concert.id %>'>More Info </a>
             <% end %>
 
 
 
-          <a href='/concerts/<%= concert.id %>'>More Info </a>
+
         </li>
     <% end %>
   </ol>

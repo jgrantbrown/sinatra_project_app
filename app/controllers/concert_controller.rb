@@ -1,7 +1,8 @@
 class ConcertController <ApplicationController
 
   get '/concerts' do
-      @concerts=Concert.all.sort_by &:date
+      @concerts=Concert.all
+      # .sort_by &:date
 
     erb :'/concerts/concert_index'
   end
@@ -16,25 +17,35 @@ class ConcertController <ApplicationController
   end
 
   post '/concerts' do
-    binding.pry
+    # binding.pry
   # need to write logic to either use radio checked or create and then process
-   @user = User.find(session["user_id"])
-     @concert = Concert.new
-      @concert.name =  params[:concert_name]
-      @concert.band_name=(params['concert']['band_name'])
-      @concert.venue_name=(params['concert']['venue_name'])
-      @concert.date=(params['concert']['date'])
-      @user.concerts<<@concert
+     @user = User.find(session["user_id"])
 
+     if params['concert']['date'] == ""
+        # advise no date entered
+         redirect 'concerts/new'
+      elsif Concert.concert_exists(params)
+              @concert=Concert.find_concert(params)
+              @user.concerts<<@concert
+            redirect "/users/#{session["user_id"]}"
+      else
+              @concert = Concert.new
+              @concert.date = params['concert']['date']
+              @concert.band_id=params['concert']['band_id']
+              @concert.venue_id=params['concert']['venue_id']
+              @concert.save
+              @user.concerts<<@concert
+          redirect "/users/#{session["user_id"]}"
+      end
 
-      redirect "/users/#{session["user_id"]}"
+        
   end
 
   delete '/concerts/:id' do
 
     @concert = Concert.find(params["id"])
     @concert.destroy
-    redirect "users/#{params[:id]}"
+    redirect "users/#{session[:user_id]}"
   end
 
 # Addd Strong Params?
