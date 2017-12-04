@@ -18,6 +18,8 @@ ActiveRecord::Schema.define(version: 20171201002056) do
 
   create_table "comments", force: :cascade do |t|
     t.string "comment"
+    t.integer "user_id"
+    t.integer "concert_id"
   end
 
   create_table "concert_users", force: :cascade do |t|

@@ -31,3 +31,19 @@ venue_list = {
     v.name = name
     v.save
   end
+
+
+
+
+    v = User.new
+    v.username = "joe"
+    v.password = "joe"
+    v.email= "joe@yahoo.com"
+    v.save
+
+
+  u = User.new
+  u.username = "max"
+  u.password = "max"
+  u.email= "max@yahoo.com"
+  u.save

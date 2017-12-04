@@ -18,8 +18,10 @@
       <th>Venue</th>
       <th>Date</th>
       <th> Comments </th>
-      <th> Add Comments </th>
-      <th> I was not there</th>
+      <% if @user.id == current_user.id %>
+        <th> Add Comments </th>
+        <th> I was not there</th>
+      <% end %>
     </tr>
 
     <% @user.concerts.each do |concert| %>
@@ -27,16 +29,15 @@
           <td><%= concert.band.name %></td>
           <td><%= concert.venue.name %></td>
           <td><%= concert.date %></td>
-
           <td><%= concert.comments.count %></td>
+
             <% if @user.id == current_user.id %>
 
             <!-- Add functionallity to add comment to concerts
                   Add fucntionallity to remove from concert
                   Add function for admin only to delete concert9if users.count =0 only-->
-              <td><form method='POST' action='/comments/new'>
-                  <input type='submit' value="Comments/Add comment">
-                </form></td>
+              <td><a href="/concerts/<%= concert.id %>">Add Comment</a>
+                </td>
 
                 <td><form method='POST' action='/concertuser/delete'>
                     <input type='hidden' name='concert_id' value=<%= concert.id %>>

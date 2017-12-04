@@ -1,1 +1,43 @@
 <h1> Info about this concert </h1>
+
+<p> Band name </p>
+
+<div class=band_concert_banner>
+  <h1><%= @concert.band.name %></h1>
+  <h2><%= @concert.date %></h2>
+  <h2><%= @concert.venue.name %></h2>
+</div>
+
+<!-- Add setlist? -->
+
+<h2> Comments/Reviews: </h2>
+<div style="width: 100%;">
+  <div style="float: left; width: 50%;">
+    <h3>Comments: </h3>
+
+    <% @concert.comments.each do |comment| %>
+      <div style="">
+        <%= comment.comment %>
+        <p>By:<%= comment.user.username %></p>
+          <% if comment.user.id= session[:user_id] %>
+            <form method="POST" action='/comments/update' >
+              <input type="submit" value='update comment'>
+            </form>
+            <form method="POST" action='/comments/destroy' >
+              <input type="submit" value='delete comment'>
+            </form>
+            <% end %>
+      </div>
+    <% end %>
+
+  </div>
+
+  <div style="float: left; width: 50%;">
+    <h3> Add Comment:</h3>
+    <form action='/comments' method='POST' >
+      <input type='hidden' name='concert_id' value=<%= @concert.id %>>
+      <input type="textarea" name='comment' >
+      <input type="submit" value='Add comment'>
+    </form>
+  </div>
+</div>

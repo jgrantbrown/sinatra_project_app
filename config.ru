@@ -11,5 +11,6 @@ use ConcertController
 use UserController
 use VenueController
 use SigninController
+use CommentController
 
 run ApplicationController

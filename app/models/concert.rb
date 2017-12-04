@@ -7,7 +7,8 @@ class Concert < ActiveRecord::Base
   belongs_to :band
   has_many :concert_users
   has_many :users, through: :concert_users
-  has_many :comments, through: :concert_users
+  has_many :comments
+
 # Add validations for venue band date
   validates :date, presence: true
 

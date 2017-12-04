@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
 
   has_many :concert_users
   has_many :concerts, through: :concert_users
-  has_many :comments, through: :concert_users
+  has_many :comments
 
   has_secure_password
 
