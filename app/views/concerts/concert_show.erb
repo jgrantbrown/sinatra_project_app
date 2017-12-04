@@ -19,7 +19,7 @@
       <div style="">
         <%= comment.comment %>
         <p>By:<%= comment.user.username %></p>
-          <% if comment.user.id= session[:user_id] %>
+          <% if comment.user.id == session[:user_id] %>
             <form method="POST" action='/comments/update' >
               <input type="submit" value='update comment'>
             </form>
