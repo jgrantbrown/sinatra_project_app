@@ -1,53 +1,45 @@
 
   <% if @user.id == current_user.id %>
     <p>Welcome back <%= @user.username %></p>
-    <a href='/concerts/new'> Add a Concert </a>
   <% end %>
 
 
-<h1>  Concerts attended by: <%= @user.username %></h1>
+<h1> Concerts attended by: <%= @user.username %></h1>
 
 <h2>All Concerts: (<%= @user.concerts.count %>)</h2>
+    <table style="width: 100%">
+        <colgroup>
+        <col span="6" style="background-color:grey">
 
-    <table>
-      <colgroup>
-      <col span="6" style="background-color:grey">
+      <tr>
+        <th>The Band</th>
+        <th>Venue</th>
+        <th>Date</th>
+        <th> Comments </th>
+        <% if @user.id == current_user.id %>
+          <th> Add Comments </th>
+          <th> Remove from Concert?</th>
+      </tr>
+        <% end %>
 
-    <tr>
-      <th>The Band</th>
-      <th>Venue</th>
-      <th>Date</th>
-      <th> Comments </th>
-      <% if @user.id == current_user.id %>
-        <th> Add Comments </th>
-        <th> I was not there</th>
-      <% end %>
-    </tr>
-
-    <% @user.concerts.each do |concert| %>
-        <tr>
-          <td><%= concert.band.name %></td>
-          <td><%= concert.venue.name %></td>
-          <td><%= concert.date %></td>
-          <td><%= concert.comments.count %></td>
-
-            <% if @user.id == current_user.id %>
-
-            <!-- Add functionallity to add comment to concerts
-                  Add fucntionallity to remove from concert
-                  Add function for admin only to delete concert9if users.count =0 only-->
-              <td><a href="/concerts/<%= concert.id %>">Add Comment</a>
-                </td>
-
+      <% @user.concerts.each do |concert| %>
+          <tr>
+            <td><%= concert.band.name %></td>
+            <td><%= concert.venue.name %></td>
+            <td><%= concert.date %></td>
+            <td><%= concert.comments.count %></td>
+              <% if @user.id == current_user.id %>
+                <td><a href="/concerts/<%= concert.id %>">Add Comment</a></td>
                 <td><form method='POST' action='/concertuser/delete'>
-                    <input type='hidden' name='concert_id' value=<%= concert.id %>>
-                    <input type='submit' value="Remove me I wasn't there">
-                  </form></td>
-
+                      <input type='hidden' name='concert_id' value=<%= concert.id %>>
+                      <input type='submit' value="Remove me I wasn't there">
+                    </form></td>
               <% end %>
-        </tr>
+          </tr>
       <% end %>
     </table>
+
+  <button><a href='/concerts/new'> Add a Concert </a></button>
 
   <div style="width: 100%;">
 

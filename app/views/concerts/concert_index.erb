@@ -1,38 +1,56 @@
 <h1> A list of all Concerts</h1>
 
-  <ol>
+<table>
+  <colgroup>
+  <col span="7" style="background-color:grey">
+  <tr>
+    <th><label>Concert Date</label></th>
+    <th><label>Band</label></th>
+    <th><label>Venue</label></th>
+    <th><label>Members attended</label></th>
+    <th><label>Comments</label></th>
+    <th><label>Info Link</label></th>
+    <th><label>Where You there?</label></th>
+  </tr>
+
+
+
+
     <% @concerts.each do |concert| %>
           <!-- Only add concerts that you have not already added
                 current_user.concerts.detect {|x| x[:id] ==  concert.id  }-->
           <!-- THis logic needs to be moved -->
            <% if !User.find(session[:user_id]).concerts.detect {|x| x[:id] ==  concert.id  } %>
-             <li>Date:<%= concert.date %>
-                 Band:<%= concert.band.name %>
-                 Venue:<%= concert.venue.name %>
-                 Number of members attended: <%= concert.users.count %>
-              <form method='POST' action='/users/addconcert'>
+            <tr>
+            <td><%= concert.date %></td>
+            <td> <%= concert.band.name %></td>
+            <td> <%= concert.venue.name %></td>
+            <td> <%= concert.users.count %></td>
+            <td> <%= concert.comments.count %></td>
+            <td>  <a href='/concerts/<%= concert.id %>'>More Info </a></td>
+            <td>  <form method='POST' action='/users/addconcert'>
                 <input type="hidden" value="<%=session[:user_id]%>" name="session[:user_id]" >
                 <input type="hidden" value="<%= concert.id %>" name="concert_id">
                 <input type="Submit" value="Add concert to my list" >
-              </form>
-              <a href='/concerts/<%= concert.id %>'>More Info </a>
-            </li>
+              </form></td>
+
+            </tr>
             <% else %>
             <!-- Add function to remove me from atteneding concert -->
-            <div style="background: green">
-              <li>Date:<%= concert.date %>
-                  Band:<%= concert.band.name %>
-                  Venue:<%= concert.venue.name %>
-                  Number of members attended: <%= concert.users.count %>
-              <a href='/concerts/<%= concert.id %>'>More Info </a>
-              <p> I was There </p>
-            </li>
+            <tr>
+              <div style="background: green">
+
+              <td><%= concert.date %>
+                <td><%= concert.band.name %>
+                <td><%= concert.venue.name %>
+              <td>   <%= concert.users.count %>
+                <td> <%= concert.comments.count %></td>
+            <td>  <a href='/concerts/<%= concert.id %>'>More Info </a>
+            <td>  <p> I was There </p>
+
             </div>
             <% end %>
 
-
-
-
-        </li>
     <% end %>
-  </ol>
+  </tr>
+  </table>

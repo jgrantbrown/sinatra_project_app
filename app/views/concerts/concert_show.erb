@@ -12,9 +12,19 @@
 
 <h2> Comments/Reviews: </h2>
 <div style="width: 100%;">
+  
   <div style="float: left; width: 50%;">
-    <h3>Comments: </h3>
+    <h3> Add Comment:</h3>
+    <form action='/comments' method='POST' >
+      <input type='hidden' name='concert_id' value=<%= @concert.id %>>
+      <input type="textarea" name='comment' >
+      <input type="submit" value='Add comment'>
+    </form>
+  </div>
 
+  <div style="float: left; width: 50%;">
+
+    <h3>Comments: </h3>
     <% @concert.comments.each do |comment| %>
       <div style="">
         <%= comment.comment %>
@@ -30,14 +40,5 @@
       </div>
     <% end %>
 
-  </div>
-
-  <div style="float: left; width: 50%;">
-    <h3> Add Comment:</h3>
-    <form action='/comments' method='POST' >
-      <input type='hidden' name='concert_id' value=<%= @concert.id %>>
-      <input type="textarea" name='comment' >
-      <input type="submit" value='Add comment'>
-    </form>
   </div>
 </div>

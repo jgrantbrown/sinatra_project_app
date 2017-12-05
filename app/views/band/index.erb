@@ -3,6 +3,7 @@
   <ol>
   <% @bands.each do |band| %>
     <li><%= band.name %>
+      <a href="/bands/<%= band.id %>"> Band info </a>
         <label>Concerts:
           (<%=band.concerts.count%>)
           </label>
