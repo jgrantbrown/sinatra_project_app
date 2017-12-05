@@ -1,3 +1,4 @@
+
 <h1> Info about this concert </h1>
 
 <p> Band name </p>
@@ -8,7 +9,6 @@
   <h2><%= @concert.venue.name %></h2>
 </div>
 
-<!-- Add setlist? -->
 
 <h2> Comments/Reviews: </h2>
 <div style="width: 100%;">
@@ -16,7 +16,7 @@
   <div style="float: left; width: 50%;">
     <h3> Add Comment:</h3>
     <form action='/comments' method='POST' >
-      <input type='hidden' name='concert_id' value=<%= @concert.id %>>
+      <input type='hidden' name='concert_id' value=<%= @comment.concert.id %>>
       <input type="textarea" name='comment' >
       <input type="submit" value='Add comment'>
     </form>
@@ -30,8 +30,12 @@
         <%= comment.comment %>
         <p>By:<%= comment.user.username %></p>
           <% if comment.user.id == session[:user_id] %>
-            <button><a href='/comments/<%= comment.id %>/update'>Update</a><button>
-
+            <form method="POST" action='/comments/<%= @comment.id %>' >
+              <input type="hidden" name="_method" value="PUT">
+              <input type='hidden' name='concert_id' value=<%= @concert.id %>>
+              <input type="text" name="comment" value="<%= @comment.comment %>">
+              <input type="submit" value='Update comment'>
+            </form>
             <form method="POST" action='/comments/<%= comment.id %>' >
               <input type="hidden" name="_method" value="DELETE">
               <input type='hidden' name='concert_id' value=<%= @concert.id %>>
