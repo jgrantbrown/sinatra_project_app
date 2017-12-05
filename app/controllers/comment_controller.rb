@@ -10,4 +10,6 @@ class CommentController < ApplicationController
     redirect "concerts/#{params[:concert_id]}"
   end
 
+  
+
 end
