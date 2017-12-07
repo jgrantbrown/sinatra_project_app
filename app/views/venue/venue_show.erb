@@ -1,0 +1,35 @@
+<h1><%=  @venue.name %></h1>
+
+<div>
+  <div >
+
+    <p>Total concerts (<%= @venue.concerts.count %>) </p>
+    <table style="width: 100%">
+        <colgroup>
+        <col span="2" style="background-color:grey">
+
+      <tr>
+        <th> Date </th>
+        <th> Band </th>
+      </tr>
+      <% @venue.concerts.each do |concert| %>
+        <tr>
+          <td><%= concert.date %> </td>
+          <td><%= concert.band.name %></td>
+        </tr>
+      <% end %>
+    </table>
+
+  </div>
+
+  <div style="float: left; width: 50%;">
+    <p>Total bands (<%= @venue.bands.uniq.count %>)</p>
+
+
+        <% @venue.bands.uniq.collect do |band| %>
+        <li><%= band.name %> </li>
+        <!-- add (numnber of concerts played at this venue) -->
+        <% end %>
+
+  </div>
+</div>

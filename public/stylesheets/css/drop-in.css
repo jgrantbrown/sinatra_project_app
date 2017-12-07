@@ -26,13 +26,17 @@ h1, h2, h3, h4, h5, h6, p {
 
 /* Fonts */
 
-html { font-family: 'Open Sans', sans-serif; }
+html { font-family: sans-serif; }
+/*'Open Sans',*/
+
 
 h1, h2, h3, h4 {
-  font-family: 'Bangers', sans-serif;
+  font-family: sans-serif;
 }
+/*  'Bangers', */
 
 /* Colors */
+
 
 html {
   background-color: #888;   /* medium gray */
@@ -52,7 +56,7 @@ main {
 a:link,
 a:visited,
 header nav input[type="submit"] {
-  color: #c00;           /* darker contrasting color; inactive links */
+  color: ##ff33ff;           /* darker contrasting color; inactive links */
   font-weight: bold;
   text-decoration: none;
 }
@@ -61,7 +65,7 @@ a:hover,
 a:active,
 header nav input[type="submit"]:hover,
 header nav input[type="submit"]:active {
-  color: #f22;          /* brighter contrasting color; active links */
+  color: #ff33ff;          /* brighter contrasting color; active links */
 }
 
 header nav li {
@@ -174,4 +178,12 @@ footer {
   text-align: center;
   font-size: 0.8rem;
   padding: 1rem;
+}
+
+td a {
+  color: blue;
+}
+
+.errorpage{
+  background-color: yellow;
 }

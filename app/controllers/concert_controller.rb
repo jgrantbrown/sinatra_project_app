@@ -1,3 +1,5 @@
+
+
 class ConcertController <ApplicationController
 
   get '/concerts' do
@@ -12,17 +14,16 @@ class ConcertController <ApplicationController
   end
 
   get '/concerts/:id' do
+    # how does flash get set from comments/new post?
     @concert = Concert.find(params["id"])
     erb :'/concerts/concert_show'
   end
 
   post '/concerts' do
-    # binding.pry
-  # need to write logic to either use radio checked or create and then process
      @user = User.find(session["user_id"])
 
      if params['concert']['date'] == ""
-        # advise no date entered
+
          redirect 'concerts/new'
       elsif Concert.concert_exists(params)
               @concert=Concert.find_concert(params)
@@ -38,15 +39,16 @@ class ConcertController <ApplicationController
           redirect "/users/#{session["user_id"]}"
       end
 
-        
+
   end
 
-  delete '/concerts/:id' do
-
-    @concert = Concert.find(params["id"])
-    @concert.destroy
-    redirect "users/#{session[:user_id]}"
-  end
+# May add ability for admin to delte
+  # delete '/concerts/:id' do
+  #
+  #   @concert = Concert.find(params["id"])
+  #   @concert.destroy
+  #   redirect "users/#{session[:user_id]}"
+  # end
 
 # Addd Strong Params?
 

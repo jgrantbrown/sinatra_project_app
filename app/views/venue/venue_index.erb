@@ -1,0 +1,8 @@
+<h1> A list of all Venues</h1>
+<ol>
+<% @venues.each do |venue| %>
+<li><%= venue.name %>(<%=venue.concerts.count%>)
+</li>
+
+<% end %>
+<ol>

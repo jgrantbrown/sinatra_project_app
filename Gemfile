@@ -12,6 +12,7 @@ gem 'pry'
 gem 'bcrypt'
 gem "tux"
 
+gem 'rack-flash3'
 
 # ADD IF USING TESTING
 # group :test do

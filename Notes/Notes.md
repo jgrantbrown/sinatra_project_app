@@ -1,3 +1,17 @@
+
+Need to add venue show page and links from all venues named
+
+
+
+
+
+
+
+
+
+
+
+
 Build a sinatra app to track history of concerts attended.
 
 
