@@ -14,6 +14,7 @@
 
   <div style="float: left; width: 225px;">
     <label for="venue_id">Select a Venue</label>
+
       <select id='venue_id' name='concert[venue_id]' type='text'>
         <% Venue.all.each() do |venue| %>
           <option value="<%= venue.id()%>"> <%= venue.name() %> </option>
@@ -36,6 +37,9 @@
 <h2> If you do not see a Venue enter it to add to the list!</h2>
   <form action='/venues/new' method='post'>
     <p>Add or Venue</p>
+    <% if flash[:message] %>
+    <p> <%= flash[:message] %><p>
+     <% end %>
     <input type='text' name="concert[venue_name]">
     <input type="submit" value="Add a Venue">
   </form>

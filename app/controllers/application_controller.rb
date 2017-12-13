@@ -28,8 +28,7 @@ class ApplicationController < Sinatra::Base
   end
 
   not_found do
-
-  erb :"/notfound"
+    erb :"/notfound"
   end
 
   error do

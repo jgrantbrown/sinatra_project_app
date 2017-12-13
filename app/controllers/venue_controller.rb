@@ -7,15 +7,17 @@ class VenueController <ApplicationController
   end
 
   post '/venues/new' do
-      if Venue.find_by( name: params[:concert][:venue_name])
-        # advice venue is already in system
-        redirect '/concerts/new'
-      else
+    
+      if Venue.find_by(name: params[:concert][:venue_name]) == nil && params[:concert][:venue_name] != ""
         @venue=Venue.new
         @venue.name=params[:concert][:venue_name]
         @venue.save
         # advise venue as been added to list
-        redirect '/concerts/new'
+        erb :'/concerts/create_concert'
+      else
+        # advice venue is already in system
+        flash[:message]= "This is already an option"
+        erb :'/concerts/create_concert'
     end
   end
 

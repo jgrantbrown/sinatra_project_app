@@ -5,7 +5,6 @@ class ConcertController <ApplicationController
   get '/concerts' do
       @concerts=Concert.all
       # .sort_by &:date
-
     erb :'/concerts/concert_index'
   end
 
